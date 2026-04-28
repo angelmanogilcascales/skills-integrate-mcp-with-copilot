@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const activitySelect = document.getElementById("activity");
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
+  const timetableList = document.getElementById("timetable-list");
 
   // Function to fetch activities from API
   async function fetchActivities() {
@@ -64,6 +65,49 @@ document.addEventListener("DOMContentLoaded", () => {
       activitiesList.innerHTML =
         "<p>Failed to load activities. Please try again later.</p>";
       console.error("Error fetching activities:", error);
+    }
+  }
+
+  async function fetchTimetable() {
+    try {
+      const response = await fetch("/timetable");
+      const timetable = await response.json();
+
+      timetableList.innerHTML = "";
+
+      const timetableHTML = Object.entries(timetable)
+        .map(([day, periods]) => {
+          const rows = periods
+            .map(
+              (period) =>
+                `<tr><td>${period.period}</td><td>${period.subject}</td></tr>`
+            )
+            .join("");
+
+          return `
+            <div class="day-schedule">
+              <h4>${day}</h4>
+              <table class="timetable-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Subject</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rows}
+                </tbody>
+              </table>
+            </div>
+          `;
+        })
+        .join("");
+
+      timetableList.innerHTML = timetableHTML;
+    } catch (error) {
+      timetableList.innerHTML =
+        "<p>Failed to load timetable. Please try again later.</p>";
+      console.error("Error fetching timetable:", error);
     }
   }
 
@@ -157,4 +201,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize app
   fetchActivities();
+  fetchTimetable();
 });

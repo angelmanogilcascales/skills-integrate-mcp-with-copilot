@@ -77,6 +77,45 @@ activities = {
     }
 }
 
+# In-memory timetable data for academic schedule integration
+timetables = {
+    "Monday": [
+        {"period": "8:00 AM - 9:00 AM", "subject": "English"},
+        {"period": "9:15 AM - 10:15 AM", "subject": "Mathematics"},
+        {"period": "10:30 AM - 11:30 AM", "subject": "Biology"},
+        {"period": "11:45 AM - 12:45 PM", "subject": "History"},
+        {"period": "1:30 PM - 2:30 PM", "subject": "Physical Education"}
+    ],
+    "Tuesday": [
+        {"period": "8:00 AM - 9:00 AM", "subject": "Chemistry"},
+        {"period": "9:15 AM - 10:15 AM", "subject": "Mathematics"},
+        {"period": "10:30 AM - 11:30 AM", "subject": "Study Skills"},
+        {"period": "11:45 AM - 12:45 PM", "subject": "Art"},
+        {"period": "1:30 PM - 2:30 PM", "subject": "Computer Science"}
+    ],
+    "Wednesday": [
+        {"period": "8:00 AM - 9:00 AM", "subject": "Physics"},
+        {"period": "9:15 AM - 10:15 AM", "subject": "Mathematics"},
+        {"period": "10:30 AM - 11:30 AM", "subject": "Language Arts"},
+        {"period": "11:45 AM - 12:45 PM", "subject": "Geography"},
+        {"period": "1:30 PM - 2:30 PM", "subject": "Music"}
+    ],
+    "Thursday": [
+        {"period": "8:00 AM - 9:00 AM", "subject": "Biology"},
+        {"period": "9:15 AM - 10:15 AM", "subject": "Mathematics"},
+        {"period": "10:30 AM - 11:30 AM", "subject": "Art"},
+        {"period": "11:45 AM - 12:45 PM", "subject": "Computer Science"},
+        {"period": "1:30 PM - 2:30 PM", "subject": "Health"}
+    ],
+    "Friday": [
+        {"period": "8:00 AM - 9:00 AM", "subject": "English"},
+        {"period": "9:15 AM - 10:15 AM", "subject": "Mathematics"},
+        {"period": "10:30 AM - 11:30 AM", "subject": "Chemistry"},
+        {"period": "11:45 AM - 12:45 PM", "subject": "Drama"},
+        {"period": "1:30 PM - 2:30 PM", "subject": "Physical Education"}
+    ]
+}
+
 
 @app.get("/")
 def root():
@@ -86,6 +125,11 @@ def root():
 @app.get("/activities")
 def get_activities():
     return activities
+
+
+@app.get("/timetable")
+def get_timetable():
+    return timetables
 
 
 @app.post("/activities/{activity_name}/signup")

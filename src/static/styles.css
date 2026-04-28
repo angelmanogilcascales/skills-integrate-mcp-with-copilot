@@ -192,6 +192,33 @@ button:hover {
   display: none;
 }
 
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.timetable-table th,
+.timetable-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.timetable-table th {
+  background-color: #e8eaf6;
+  color: #1a237e;
+}
+
+.day-schedule {
+  margin-bottom: 20px;
+}
+
+.day-schedule h4 {
+  margin-bottom: 10px;
+  color: #1a237e;
+}
+
 footer {
   text-align: center;
   margin-top: 30px;
